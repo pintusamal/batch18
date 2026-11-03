@@ -2,6 +2,7 @@
   "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
   "username": "Admin",
   "password": "admin123",
-  "browser": "firefox",
-  "dashboard_txt": "Dashboard"
+  "browser": "chrome",
+  "dashboard_txt": "Dashboard",
+  "reset_username": "Pintu"
 }

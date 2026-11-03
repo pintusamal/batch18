@@ -1,10 +1,13 @@
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
 
     def __init__(self, driver):
         self.driver = driver
+        self.time = 20
 
     def open_chrome(self):
         self.driver= webdriver.Chrome()
@@ -52,5 +55,14 @@ class BasePage:
         element.send_keys(text)
 
     def get_web_element(self, locator):
-        return self.driver.find_element(locator[0], locator[1])
+        self.wait_for_object(locator)
+        element = self.driver.find_element(locator[0], locator[1])
+        return element
 
+    def wait_for_object(self, locator):
+        wait = WebDriverWait(self.driver, self.time)
+        wait.until(EC.visibility_of_element_located((locator[0], locator[1])))
+
+    def fetch_text(self, locator):
+        element = self.get_web_element(locator)
+        return element.text
